@@ -1,13 +1,6 @@
 node_modules/
 .meteor/local/
-_build/
-.rsdoctor/
 npm-debug.log
 .env
 .DS_Store
-
-# Meteor Modern-Tools build context directories
-_build
-*/build-assets
-*/build-chunks
-.rsdoctor
+_build/

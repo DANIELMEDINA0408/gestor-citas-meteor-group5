@@ -90,6 +90,21 @@ body {
   background: #1d4ed8;
 }
 
+.boton-editar {
+  background-color: #4caf50;
+  margin-left: 10px;
+}
+.boton-eliminar {
+  background-color: #f44336;
+  margin-left: 5px;
+}
+.boton-editar, .boton-eliminar {
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
 .lista {
   list-style: none;
   padding: 0;

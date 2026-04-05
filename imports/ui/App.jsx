@@ -11,6 +11,35 @@ export const App = () => {
     const pacientesSub = Meteor.subscribe('pacientes');
     const citasSub = Meteor.subscribe('citas');
 
+      const editarPaciente = (paciente) => {
+      const nuevoNombre = prompt('Nuevo nombre:', paciente.nombre);
+      const nuevoDocumento = prompt('Nuevo documento:', paciente.documento);
+      if (nuevoNombre && nuevoDocumento) {
+        Meteor.call('pacientes.update', { id: paciente._id, nombre: nuevoNombre, documento: nuevoDocumento });
+      }
+    };
+
+    const eliminarPaciente = (id, nombre) => {
+      if (confirm(`¿Eliminar al paciente "${nombre}"? También se borrarán sus citas.`)) {
+        Meteor.call('pacientes.remove', id);
+      }
+    };
+
+    const editarCita = (cita) => {
+      const nuevaFecha = prompt('Nueva fecha (YYYY-MM-DD):', cita.fecha);
+      const nuevoMotivo = prompt('Nuevo motivo:', cita.motivo);
+      const nuevoEstado = prompt('Estado (pendiente/confirmada/completada):', cita.estado);
+      if (nuevaFecha && nuevoMotivo && nuevoEstado) {
+        Meteor.call('citas.update', { id: cita._id, fecha: nuevaFecha, motivo: nuevoMotivo, estado: nuevoEstado });
+      }
+    };
+
+    const eliminarCita = (id) => {
+      if (confirm('¿Eliminar esta cita?')) {
+        Meteor.call('citas.remove', id);
+      }
+    };
+
     return {
       pacientes: PacientesCollection.find({}, { sort: { createdAt: -1 } }).fetch(),
       citas: CitasCollection.find({}, { sort: { createdAt: -1 } }).fetch(),
@@ -22,10 +51,6 @@ export const App = () => {
     <div className="app">
       <div className="app-header">
         <h1>Gestor de Citas - Piedra Azul</h1>
-        <p>
-          Base del proyecto en Meteor.js + React alineada con el sistema de
-          agendamiento trabajado durante el semestre.
-        </p>
       </div>
 
       <div className="grid">
@@ -47,6 +72,10 @@ export const App = () => {
                     <span className="texto-secundario">
                       Documento: {paciente.documento}
                     </span>
+                    <div>
+                      <button onClick={() => editarPaciente(paciente)} className="boton-editar">Editar</button>
+                      <button onClick={() => eliminarPaciente(paciente._id, paciente.nombre)} className="boton-eliminar">Eliminar</button>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -85,6 +114,10 @@ export const App = () => {
                       >
                         {cita.estado || 'programada'}
                       </span>
+                       <div>
+                        <button onClick={() => editarCita(cita)} className="boton-editar">Editar</button>
+                        <button onClick={() => eliminarCita(cita._id)} className="boton-eliminar">Eliminar</button>
+                      </div>
                     </li>
                   );
                 })}

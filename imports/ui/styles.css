@@ -150,6 +150,72 @@ body {
   color: #166534;
 }
 
+.estado-completada {
+  background: #f3e8ff;
+  color: #6b21a8;
+}
+
+.acciones {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+.formulario-edicion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formulario-edicion input,
+.formulario-edicion select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.formulario-edicion input:focus,
+.formulario-edicion select:focus {
+  border-color: #2563eb;
+}
+
+.acciones-edicion {
+  display: flex;
+  gap: 8px;
+}
+
+.boton-guardar {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.boton-guardar:hover {
+  background-color: #1d4ed8;
+}
+
+.boton-cancelar {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.boton-cancelar:hover {
+  background-color: #4b5563;
+}
+
 .vacio {
   color: #6b7280;
   font-style: italic;
